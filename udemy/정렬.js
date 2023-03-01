@@ -112,4 +112,33 @@ function bubbleSort3(arr) {
 
 bubbleSort3([8, 1, 2, 3, 4, 5, 6, 7]);
 
-//버블 정렬의 빅오 기본적으로 big-O(n^2) 이미 거의 다 정렬 되었을 경우는 ig-O(n)
+//버블 정렬의 빅오 기본적으로 big-O(n^2) 이미 거의 다 정렬 되었을 경우는 big-O(n)
+
+//*************************************************************
+
+// 선택 정렬
+
+// 배열을 한번 주회하고 최솟값을 찾가 맨 앞으로 바꾸고 이걸 반복
+
+// 구현
+
+function selectionSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let lowest = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[lowest]) {
+        lowest = j;
+      }
+    }
+    if (i !== lowest) {
+      let temp = arr[i];
+      arr[i] = arr[lowest];
+      arr[lowest] = temp;
+    }
+  }
+  return arr;
+}
+
+selectionSort([5, 3, 4, 1, 2]);
+
+// 선택 정렬의 빅오 big-O(n^2)
