@@ -142,3 +142,67 @@ function selectionSort(arr) {
 selectionSort([5, 3, 4, 1, 2]);
 
 // 선택 정렬의 빅오 big-O(n^2)
+
+//*************************************************************
+// 삽입 정렬
+
+// 배열의 과반을 점차적으로 만들어 정렬을 구축, 과반은 항상 정렬되어 있음
+
+// ex) [5,3,4,1,2] => [3,5,4,1,2] => [3,4,5,1,2] => [1,3,4,5,2] => [1,2,3,4,5]
+
+// 구현
+
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let current = arr[i];
+    for (var j = i - 1; j >= 0 && arr[j] > current; j--) {
+      arr[j + 1] = arr[j];
+      console.log(arr);
+    }
+    arr[j + 1] = current;
+  }
+  return arr;
+}
+
+// another
+
+function insertionSort(array) {
+  for (let i = 1; i < array.length; i++) {
+    let cur = array[i];
+    let left = i - 1;
+
+    while (left >= 0 && array[left] > cur) {
+      array[left + 1] = array[left];
+      left--;
+    }
+    array[left + 1] = cur;
+    console.log(`${i}회전: ${array}`);
+  }
+  return array;
+}
+
+insertionSort([5, 3, 4, 1, 2]);
+
+// 시간 복잡도는 위와 비슷함 하지만 내림차순일때 가장 효율이 나쁨
+// 삽입정렬의 특별한 점은 데이터를 계속 정렬해야 할 경우 좋다
+
+//*************************************************************
+
+//버블 선택 삽입 정렬 비교
+
+//     **Best**Aberage**Worst**Space
+// 버블**O(n)***O(n^2)**O(n^2)*O(1)
+// ************************************
+// 선택**O(n)***O(n^2)**O(n^2)*O(1)
+// ************************************
+// 삽입**O(n^2)*O(n^2)**O(n^2)*O(1)
+
+// 특징적으로 3개의 정렬 모두 공간 복잡도는 O(1)인데
+// 다른 빠른 알고리즘은 작은 배열을 추가로 만드는 방식이라
+// 공간 복잡도가 크다
+
+// 요약
+// 정렬은 프로그래밍의 기본 면접에서도 기본
+// 하지만 굳이 알고리즘 구현 방식을 모두 외울 필요 없음
+// 전체적으로 3 정렬 모두 비슷함
+//
