@@ -255,4 +255,24 @@ function merge(arr1, arr2) {
   return results;
 }
 
-merge([1, 10, 50], [2, 14, 99, 100]);
+// merge([1,10,50],[2,14,99,100])
+
+// 합병 정렬 구현
+
+// 목표는 배열을 계속 반으로 나누는 것 (slice를 쓴다)
+// 작은 배열이 준비 되었다면 작성해 놓은 합병 함수를 사용해 다시 합친다.
+// 간단해 보이지만 재귀적 코드로 작성함
+// 배열을 다시 합쳤으면 가장 마지막에 합병된 배열을 반환
+
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
+
+mergeSort([10, 24, 76, 74, 72, 1, 9]);
+
+// Big O
+// 예외 없이 O(n log n) 공간 복잡도 O(n)
