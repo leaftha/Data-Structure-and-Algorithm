@@ -321,4 +321,21 @@ function pivot(arr, start = 0, end = arr.length + 1) {
   return swapIdx;
 }
 
-console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3]));
+// console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3]));
+
+// 퀵 정렬 구현
+
+// 전체 배열의 가장 앞에서 피벗 헬퍼를 호줄함
+// 로직은 업데이트된 피벗 인덱스를 헬퍼가 반환하면
+// 피벗 헬퍼를 재귀적으로 왼쪽과 오른쪽에 호출
+
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    let pivotIndex = pivot(arr, left, right);
+    quickSort(arr, left, pivotIndex - 1);
+    quickSort(arr, pivotIndex + 1, right);
+  }
+  return arr;
+}
+
+quickSort([4, 6, 9, 1, 2, 5, 3]);
