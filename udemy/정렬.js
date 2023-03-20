@@ -319,11 +319,7 @@ function pivot(arr, start = 0, end = arr.length + 1) {
   return swapIdx;
 }
 
-<<<<<<<<< Temporary merge branch 1
-// console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3]));
-=========
 // console.log(pivot([4,8,2,1,5,7,6,3]))
->>>>>>>>> Temporary merge branch 2
 
 // 퀵 정렬 구현
 
@@ -341,8 +337,5 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
 }
 
 quickSort([4, 6, 9, 1, 2, 5, 3]);
-<<<<<<<<< Temporary merge branch 1
-=========
 
 // 퀵 정렬의 빅오 best Average O(n log n), Worst O(n ^ 2) 공간 O(log n)
->>>>>>>>> Temporary merge branch 2
