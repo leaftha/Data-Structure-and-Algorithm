@@ -320,6 +320,7 @@ function pivot(arr, start = 0, end = arr.length + 1) {
 }
 
 // console.log(pivot([4,8,2,1,5,7,6,3]))
+// console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3]));
 
 // 퀵 정렬 구현
 
