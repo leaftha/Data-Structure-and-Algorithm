@@ -319,7 +319,11 @@ function pivot(arr, start = 0, end = arr.length + 1) {
   return swapIdx;
 }
 
+<<<<<<< HEAD
 // console.log(pivot([4,8,2,1,5,7,6,3]))
+=======
+// console.log(pivot([4, 8, 2, 1, 5, 7, 6, 3]));
+>>>>>>> 497070d4d69b502e3b81c5b6734cb164f2f2dd22
 
 // 퀵 정렬 구현
 
@@ -337,5 +341,8 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
 }
 
 quickSort([4, 6, 9, 1, 2, 5, 3]);
+<<<<<<< HEAD
 
 // 퀵 정렬의 빅오 best Average O(n log n), Worst O(n ^ 2) 공간 O(log n)
+=======
+>>>>>>> 497070d4d69b502e3b81c5b6734cb164f2f2dd22
