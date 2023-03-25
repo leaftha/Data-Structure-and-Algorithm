@@ -418,3 +418,30 @@ function mostDigits(nums) {
 }
 
 // mostDigits([2222,44,1,55555])   5
+
+// 의사 코드
+// 맨 먼저, 가장 큰수가 몇자리 인지 알아내야함
+// 정의 했던 메소드를 사용해 이를 알아낸 다음 루피를 시작
+// 진행 할때마다 버킷을 만든다. (0 에서 9: 총 10개)
+// 루프를 수행할 때마다 각각의 수를 올바른 버킷에 넣는다.
+
+// 구현
+function radixSort(nums) {
+ let maxDigitsCount = mostDigits(nums)
+ for (let k = 0; k < maxDigitsCount; k++) {
+  let digitBuckets = Array.from({length:10}, () => [])
+  for (let i = 0; i < nums.length; i++) {
+   let digit = getDigit(nums[i],k)
+   
+   digitBuckets[digit].push(nums[i])
+  }
+  console.log(digitBuckets)
+   nums = [].concat(...digitBuckets)
+  console.log(nums)
+ }
+ return nums
+}
+
+radixSort([23,345,5467,12,2345,9852])
+
+// 기수 정렬 빅오 O(nk) || 공간 복잡도 O(n+k)
