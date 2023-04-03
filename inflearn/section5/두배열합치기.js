@@ -4,7 +4,7 @@ function solution(arr1, arr2) {
   let answer = [];
   let a = 0;
   let b = 0;
-  while (a < arr1.length) {
+  while (a < arr1.length || b < arr2.length) {
     if (arr1[a] <= arr2[b]) {
       answer.push(arr1[a]);
       a++;
