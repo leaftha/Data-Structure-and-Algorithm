@@ -26,3 +26,27 @@
 // 배열
 // 인덱스가 있다. 그래서 처음 또는 중간에 추가하면 순차적인 물결 효과가 있다.
 // 처음 혹은 추가된 부분부터 다시 인덱스해야한다.
+
+//*************************************************************
+
+// 코드 스타터 노드 class
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class SinglyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+    push(val) {}
+}
+
+// let first = new Node('1')
+// first.next = new Node('2')
+// first.next.next = new Node('3')
