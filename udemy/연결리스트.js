@@ -118,6 +118,15 @@ class SinglyLinkedList {
         }
         return current;
     }
+
+    set(n, val) {
+        let found = this.get(n);
+        if (found) {
+            found.val = val;
+            return true;
+        }
+        return false;
+    }
 }
 
 // let first = new Node('1')
