@@ -191,3 +191,6 @@ list.push('10');
 // removal - it depens... O(1) or O(n)
 // searching  : O(n)
 // access : O(n)
+
+// 삽입과 제거가 주 목적인 경우 쓰인다.
+// 순회나 n번째 노드를 찾고 그런 경우 사용 X
