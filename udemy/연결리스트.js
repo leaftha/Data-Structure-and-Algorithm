@@ -186,3 +186,8 @@ list.push('10');
 
 // list.traverse()
 // console.log(list)
+
+// insertion : O(1)
+// removal - it depens... O(1) or O(n)
+// searching  : O(n)
+// access : O(n)
