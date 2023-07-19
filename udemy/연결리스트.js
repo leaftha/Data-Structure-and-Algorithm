@@ -140,6 +140,17 @@ class SinglyLinkedList {
         this.length += 1;
         return true;
     }
+
+    remove(n) {
+        if (n < 0 || n >= this.length) return undefined;
+        if (n === 0) return this.shift();
+        if (n === this.length - 1) return this.pop();
+        let prevNode = this.get(n - 1);
+        let removed = prevNode.next;
+        prevNode.next = removed.next;
+        this.length -= 1;
+        return removed;
+    }
 }
 
 // let first = new Node('1')
