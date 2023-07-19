@@ -127,6 +127,19 @@ class SinglyLinkedList {
         }
         return false;
     }
+
+    insert(n, val) {
+        if (n < 0 || n >= this.length) return false;
+        if (n === this.length) return this.push(val);
+        if (n === 0) return this.unshift(val);
+        let newNode = new Node(val);
+        let prev = this.get(n - 1);
+        let temp = prev.next;
+        prev.next = newNode;
+        newNode.next = temp;
+        this.length += 1;
+        return true;
+    }
 }
 
 // let first = new Node('1')
