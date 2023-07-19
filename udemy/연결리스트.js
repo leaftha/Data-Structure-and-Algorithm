@@ -29,7 +29,7 @@
 
 //*************************************************************
 
-// 코드 스타터 노드 class
+// 단방향 연결리스트
 
 class Node {
     constructor(val) {
@@ -65,6 +65,24 @@ class SinglyLinkedList {
             current = current.next;
         }
     }
+
+    pop() {
+        if (!this.head) return undefined;
+        let current = this.head;
+        let newTail = current;
+        while (current.next) {
+            newTail = current;
+            current = current.next;
+        }
+        this.tail = newTail;
+        this.tail.next = null;
+        if (this.length === 0) {
+            this.head = null;
+            this.tail = null;
+        }
+        this.length -= 1;
+        return current;
+    }
 }
 
 // let first = new Node('1')
@@ -75,6 +93,13 @@ let list = new SinglyLinkedList();
 list.push('1');
 list.push('2');
 list.push('3');
+list.push('4');
+list.push('5');
+list.push('6');
+list.push('7');
+list.push('8');
+list.push('9');
+list.push('10');
 
-list.traverse();
+// list.traverse()
 // console.log(list)
