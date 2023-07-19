@@ -44,9 +44,28 @@ class SinglyLinkedList {
         this.tail = null;
         this.length = 0;
     }
-    push(val) {}
+
+    push(val) {
+        let newNode = new Node(val);
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+        this.length += 1;
+        return this;
+    }
 }
 
 // let first = new Node('1')
 // first.next = new Node('2')
 // first.next.next = new Node('3')
+
+let list = new SinglyLinkedList();
+list.push('1');
+list.push('2');
+list.push('3');
+
+console.log(list);
