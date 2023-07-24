@@ -322,6 +322,21 @@ class DoublyLinkedList {
         this.length += 1;
         return true;
     }
+
+    remove(n) {
+        if (n < 0 || n >= this.length) return undefined;
+        if (n === 0) return this.shift();
+        if (n === this.length - 1) return this.pop();
+        let removeNode = this.get(n);
+        let before = removeNode.prev;
+        let after = removeNode.next;
+        before.next = after;
+        after.prev = before;
+        removeNode.next = null;
+        removeNode.prev = null;
+        this.length -= 1;
+        return removeNode;
+    }
 }
 
 let Dublist = new DoublyLinkedList();
