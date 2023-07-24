@@ -264,6 +264,19 @@ class DoublyLinkedList {
         this.length -= 1;
         return popNode;
     }
+    unshift(val) {
+        let newNode = new DoubleNode(val);
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length += 1;
+        return this;
+    }
 }
 
 let Dublist = new DoublyLinkedList();
