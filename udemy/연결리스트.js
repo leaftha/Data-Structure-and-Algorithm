@@ -206,7 +206,6 @@ class SinglyLinkedList {
 //     head                          tail
 
 // 단일 연결리스트보다 방향을 하나더 저장 함으로 메모리가 더 많이 든다.
-
 class DoubleNode {
     constructor(val) {
         this.val = val;
@@ -221,7 +220,28 @@ class DoublyLinkedList {
         this.tail = null;
         this.length = 0;
     }
+
+    push(val) {
+        let newNode = new DoubleNode(val);
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;
+        }
+        this.length += 1;
+        return this;
+    }
 }
 
 let Dublist = new DoublyLinkedList();
+Dublist.push('0');
+Dublist.push('1');
+Dublist.push('2');
+Dublist.push('3');
+Dublist.push('4');
+Dublist.push('5');
+Dublist.push('6');
 console.log(Dublist);
