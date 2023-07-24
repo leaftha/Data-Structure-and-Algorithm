@@ -172,17 +172,17 @@ class SinglyLinkedList {
 // first.next = new Node('2')
 // first.next.next = new Node('3')
 
-let list = new SinglyLinkedList();
-list.push('1');
-list.push('2');
-list.push('3');
-list.push('4');
-list.push('5');
-list.push('6');
-list.push('7');
-list.push('8');
-list.push('9');
-list.push('10');
+// let list = new SinglyLinkedList();
+// list.push('1');
+// list.push('2');
+// list.push('3');
+// list.push('4');
+// list.push('5');
+// list.push('6');
+// list.push('7');
+// list.push('8');
+// list.push('9');
+// list.push('10');
 
 // list.traverse()
 // console.log(list)
@@ -194,3 +194,15 @@ list.push('10');
 
 // 삽입과 제거가 주 목적인 경우 쓰인다.
 // 순회나 n번째 노드를 찾고 그런 경우 사용 X
+
+//*************************************************************
+
+//이중 연결리스트
+// 기본적으로 단일 연결리스트와 비슷하지만
+// 방향이 하나더 생긴다.
+// prev 가 생겨서 단순해 보이지만 실제로 코드는 많은 것들이 바뀜'
+
+// ex) [4] <- -> [6] <- -> [8] <- -> [2]
+//     head                          tail
+
+// 단일 연결리스트보다 방향을 하나더 저장 함으로 메모리가 더 많이 든다.
