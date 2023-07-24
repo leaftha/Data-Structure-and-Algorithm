@@ -298,6 +298,15 @@ class DoublyLinkedList {
             return current;
         }
     }
+
+    set(n, val) {
+        let found = this.get(n);
+        if (found != null) {
+            found.val = val;
+            return true;
+        }
+        return false;
+    }
 }
 
 let Dublist = new DoublyLinkedList();
