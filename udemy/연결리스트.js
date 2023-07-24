@@ -277,6 +277,27 @@ class DoublyLinkedList {
         this.length += 1;
         return this;
     }
+
+    get(n) {
+        if (n < 0 || n >= this.length) return null;
+        if (n <= this.length / 2) {
+            let count = 0;
+            let current = this.head;
+            while (count != n) {
+                current = current.next;
+                count++;
+            }
+            return current;
+        } else {
+            let count = this.length - 1;
+            let current = this.tail;
+            while (count != n) {
+                current = current.prev;
+                count--;
+            }
+            return current;
+        }
+    }
 }
 
 let Dublist = new DoublyLinkedList();
