@@ -307,6 +307,21 @@ class DoublyLinkedList {
         }
         return false;
     }
+
+    insert(n, val) {
+        if (n < 0 || n >= this.length) return false;
+        if (n === this.length) return this.push(val);
+        if (n === 0) return this.unshift(val);
+        let newNode = new DoubleNode(val);
+        let before = this.get(n - 1);
+        let after = before.next;
+        before.next = newNode;
+        newNode.prev = before;
+        newNode.next = after;
+        after.prev = newNode;
+        this.length += 1;
+        return true;
+    }
 }
 
 let Dublist = new DoublyLinkedList();
