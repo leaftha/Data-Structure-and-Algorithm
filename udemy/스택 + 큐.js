@@ -130,6 +130,8 @@ console.log(stack);
 // | 1 |
 // | 0 |   <--- 가장 먼저 쌓이기 시작함 & 가장 먼저 제거
 
+//************************배열로 만들기*************************
+
 let q1 = [];
 
 q1.push('1');
@@ -153,3 +155,52 @@ q2.pop();
 // 간단히 같은 방향에서 추가와 제거를 사용하면 된다.
 // 하지만 큐를 배열로 만드면 스택과 다르게 인덱스가 다시 적용되기 때문에
 // 성능에 더 신경쓰는 경우에는 class로 직접만드는 것이 좋다.
+
+//*************************class로 만들기***********************
+
+class QNode {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class Queue {
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+
+    enqueue(val) {
+        let newNode = new QNode(val);
+        if (!this.first) {
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            this.last.next = newNode;
+            this.last = newNode;
+        }
+        return (this.size += 1);
+    }
+
+    dequeue() {
+        if (!this.first) return null;
+        let temp = this.first;
+        if (this.first === this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size -= 1;
+        return temp.val;
+    }
+}
+
+const q = new Queue();
+q.enqueue('0');
+q.enqueue('1');
+q.enqueue('2');
+q.enqueue('3');
+q.enqueue('4');
+
+console.log(q);
