@@ -42,3 +42,56 @@ console.log(stack1, stack2);
 // 배열도 스택으로 사용가능하다.
 // push/pop 조합이나 unshift/shift 조합을 사용하면 된다.
 // 간단히 같은 방향에서 추가와 제거를 사용하면 된다.
+
+//*************************class로 만들기***********************
+
+// 배열로 사용하면 쉽고 빠르게 코딩 가능하다.
+
+class StackNode {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class Stack {
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+
+    push(val) {
+        let newNode = new StackNode(val);
+        if (!this.first) {
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            let temp = this.first;
+            this.first = newNode;
+            this.first.next = temp;
+        }
+        return (this.size += 1);
+    }
+
+    pop() {
+        if (!this.first) return null;
+        let temp = this.first;
+        if (this.first === this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size -= 1;
+        return temp.val;
+    }
+}
+
+let stack = new Stack();
+
+stack.push('0');
+stack.push('1');
+stack.push('2');
+stack.push('3');
+stack.push('4');
+
+console.log(stack);
