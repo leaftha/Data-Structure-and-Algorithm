@@ -204,3 +204,15 @@ q.enqueue('3');
 q.enqueue('4');
 
 console.log(q);
+
+// queues의 Big O
+// Insertion - O(1)
+// Removal - O(1)
+// Searching - O(N)
+// Access - O(N)
+
+// 삽입과 제거의 Big O는 상수이다. <- 이것이 젤 중요
+
+// 큐는 공항에서 줄 서는 것처럼 선입선출이다. 스택과 반대
+// 큐는 가장 먼저 들어간 순서대로 나오도록 그 순서를 유지하고
+// 추적할 필요가 있을 때 사용 마치 인쇄대기열 처럼
