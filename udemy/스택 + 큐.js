@@ -20,3 +20,25 @@
 // 2. 포토샹 등에서 사용되는 실행 취소, 다시 실행 가장 뒤에 작업부터 차근차근 제거됨
 // 3. 인터넷 브라우저의 방문 기록
 // 4. 알고리즘에 활용 (트리나 그래프에서)
+
+//************************배열로 만들기*************************
+
+let stack1 = [];
+stack1.push('0');
+stack1.push('1');
+stack2.push('2');
+
+stack1.pop();
+
+let stack2 = [];
+stack2.unshift('0');
+stack2.unshift('1');
+stack2.unshift('2');
+
+stack2.shift();
+
+console.log(stack1, stack2);
+
+// 배열도 스택으로 사용가능하다.
+// push/pop 조합이나 unshift/shift 조합을 사용하면 된다.
+// 간단히 같은 방향에서 추가와 제거를 사용하면 된다.
