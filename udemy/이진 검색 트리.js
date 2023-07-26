@@ -109,3 +109,8 @@ tree.insert(17);
 tree.insert(2);
 
 console.log(tree);
+
+// 이진트리의 Big O
+
+// Insertion - O(log n)
+// Searching - O(log n)
