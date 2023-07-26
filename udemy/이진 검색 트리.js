@@ -35,3 +35,25 @@
 // 이진 트리는 각 노드가 최대 두개의 자식을 가지는 경우
 // 부모 노드의 왼쪽에 있는 모든 노드는 언제나 부모보다 작고
 // 부모 노드보다 오른쪾에 있는 모든 노드는 언제나 부모보다 크다.
+
+// 위의 규칙들은 무언가를 찾아보는 것을 아주 빠르고 쉽게 만들어 준다.
+
+//*************************************************************
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.right = null;
+        this.left = null;
+    }
+}
+
+class BinarySearchTree {
+    constructor() {
+        this.root = null;
+    }
+}
+
+let tree = new BinarySearchTree();
+
+console.log(tree);
