@@ -40,77 +40,187 @@
 
 //*************************************************************
 
-class Node {
-    constructor(val) {
-        this.val = val;
-        this.right = null;
-        this.left = null;
-    }
-}
+// class Node {
+//     constructor(val) {
+//         this.val = val;
+//         this.right = null;
+//         this.left = null;
+//     }
+// }
 
-class BinarySearchTree {
-    constructor() {
-        this.root = null;
-    }
+// class BinarySearchTree {
+//     constructor() {
+//         this.root = null;
+//     }
 
-    insert(val) {
-        var newNode = new Node(val);
-        if (this.root === null) {
-            this.root = newNode;
-            return this;
-        }
-        var current = this.root;
-        while (true) {
-            if (val === current.val) return undefined;
-            if (val < current.val) {
-                if (current.left === null) {
-                    current.left = newNode;
-                    return this;
-                }
-                current = current.left;
-            } else {
-                if (current.right === null) {
-                    current.right = newNode;
-                    return this;
-                }
-                current = current.right;
-            }
-        }
-    }
+//     insert(val) {
+//         var newNode = new Node(val);
+//         if (this.root === null) {
+//             this.root = newNode;
+//             return this;
+//         }
+//         var current = this.root;
+//         while (true) {
+//             if (val === current.val) return undefined;
+//             if (val < current.val) {
+//                 if (current.left === null) {
+//                     current.left = newNode;
+//                     return this;
+//                 }
+//                 current = current.left;
+//             } else {
+//                 if (current.right === null) {
+//                     current.right = newNode;
+//                     return this;
+//                 }
+//                 current = current.right;
+//             }
+//         }
+//     }
 
-    find(n) {
-        if (this.root === null) return false;
-        let current = this.root;
-        let found = false;
-        while (current && !found) {
-            if (n < current.val) {
-                current = current.left;
-            } else if (n > current.val) {
-                current = current.right;
-            } else {
-                found = true;
-            }
-        }
-        if (!found) return undefined;
-        return current;
-    }
-}
+//     find(n) {
+//         if (this.root === null) return false;
+//         let current = this.root;
+//         let found = false;
+//         while (current && !found) {
+//             if (n < current.val) {
+//                 current = current.left;
+//             } else if (n > current.val) {
+//                 current = current.right;
+//             } else {
+//                 found = true;
+//             }
+//         }
+//         if (!found) return undefined;
+//         return current;
+//     }
+// }
 
-let tree = new BinarySearchTree();
+// let tree = new BinarySearchTree();
 
-tree.insert(10);
-tree.insert(12);
-tree.insert(5);
-tree.insert(1);
-tree.insert(53);
-tree.insert(23);
-tree.insert(4);
-tree.insert(17);
-tree.insert(2);
+// tree.insert(10);
+// tree.insert(12);
+// tree.insert(5);
+// tree.insert(1);
+// tree.insert(53);
+// tree.insert(23);
+// tree.insert(4);
+// tree.insert(17);
+// tree.insert(2);
 
-console.log(tree);
+// console.log(tree);
 
 // 이진트리의 Big O
 
 // Insertion - O(log n)
 // Searching - O(log n)
+
+//*************************************************************
+
+// 트리 순회
+// 규칙 없는 트리를 순회는 데는 두가지 방법이 있다.
+// 1. 너비 우선 탐색 (Breadth-first Seacrch)
+// 2. 깊이 우선 탐색 (Depth-first Seacrch)
+
+// 이 두개의 차이는 순회 방향에 있다.
+
+//*************************************************************
+
+// 너비 우선 탐색 (Breadth-first Seacrch)
+
+// 너비 우선 탐색은 아래로 내려가기 전에 같은 레벨에 있는 모든 노드들을 거쳐가는 것
+
+//  (1)-->      2
+//  (2)-->    1   4
+//  (3)_--> 5     1  6
+// [2,1,4,5,1,6] <= 이런 식으로
+
+// 너비 우선 탐색을 만들기 위해서는 큐를 사용한다.
+
+//*************************************************************
+
+// 구현
+
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.right = null;
+    this.left = null;
+  }
+}
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+  }
+
+  insert(val) {
+    var newNode = new Node(val);
+    if (this.root === null) {
+      this.root = newNode;
+      return this;
+    }
+    var current = this.root;
+    while (true) {
+      if (val === current.val) return undefined;
+      if (val < current.val) {
+        if (current.left === null) {
+          current.left = newNode;
+          return this;
+        }
+        current = current.left;
+      } else {
+        if (current.right === null) {
+          current.right = newNode;
+          return this;
+        }
+        current = current.right;
+      }
+    }
+  }
+
+  find(n) {
+    if (this.root === null) return false;
+    let current = this.root;
+    let found = false;
+    while (current && !found) {
+      if (n < current.val) {
+        current = current.left;
+      } else if (n > current.val) {
+        current = current.right;
+      } else {
+        found = true;
+      }
+    }
+    if (!found) return undefined;
+    return current;
+  }
+
+  BFS() {
+    let data = [];
+    let queue = [];
+    let node = this.root;
+    queue.push(node);
+    while (queue.length) {
+      node = queue.shift();
+      data.push(node);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return data;
+  }
+}
+
+let tree = new BinarySearchTree();
+
+tree.insert(10);
+tree.insert(6);
+tree.insert(3);
+tree.insert(15);
+tree.insert(8);
+tree.insert(20);
+// tree.insert(4);
+// tree.insert(17);
+// tree.insert(2);
+
+console.log(tree);
