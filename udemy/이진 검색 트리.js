@@ -154,6 +154,16 @@
 // 우선 root를 본 다음 왼쪽을 우선해서 순회한 다음 오른쪽을 순회
 // ex) 위가 예시
 
+// 후위 (PostOrder)
+
+// 후위 순횐는 노드를 나중에 방문하고, 그 전에 오른쪽과 왼쪽을 순서대로 돈다.
+
+//  (1)-->      2
+//  (2)-->    1   4
+//  (3)_--> 5     3  6
+
+// ex) [5,1,3,6,4,2]
+
 //*************************************************************
 
 // 구현
@@ -236,6 +246,18 @@ class BinarySearchTree {
         };
         traverse(this.root);
 
+        return data;
+    }
+
+    DFSPostOrder() {
+        let data = [];
+
+        const traverse = (node) => {
+            if (node.left) traverse(node.left);
+            if (node.right) traverse(node.right);
+            data.push(node.val);
+        };
+        traverse(this.root);
         return data;
     }
 }
