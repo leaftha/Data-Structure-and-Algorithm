@@ -135,80 +135,109 @@
 //  (3)_--> 5     1  6
 // [2,1,4,5,1,6] <= 이런 식으로
 
-// 너비 우선 탐색을 만들기 위해서는 큐를 사용한다.
+// 너비 우선 탐색을 만들기 위해서는 큐를 사용한다
+
+//*************************************************************
+
+// 깊이 우선 탐색 (Depth-first Seacrch)
+
+// 깊이 우선 탐색은 밑으로 내려가서 순회하는 것
+
+//  (1)-->      2
+//  (2)-->    1   4
+//  (3)_--> 5     1  6
+
+// ex) [2,1,5,3,1,6]
+
+// 전위 (PreOrder)
+
+// 우선 root를 본 다음 왼쪽을 우선해서 순회한 다음 오른쪽을 순회
+// ex) 위가 예시
 
 //*************************************************************
 
 // 구현
 
 class Node {
-  constructor(val) {
-    this.val = val;
-    this.right = null;
-    this.left = null;
-  }
+    constructor(val) {
+        this.val = val;
+        this.right = null;
+        this.left = null;
+    }
 }
 
 class BinarySearchTree {
-  constructor() {
-    this.root = null;
-  }
-
-  insert(val) {
-    var newNode = new Node(val);
-    if (this.root === null) {
-      this.root = newNode;
-      return this;
+    constructor() {
+        this.root = null;
     }
-    var current = this.root;
-    while (true) {
-      if (val === current.val) return undefined;
-      if (val < current.val) {
-        if (current.left === null) {
-          current.left = newNode;
-          return this;
+
+    insert(val) {
+        var newNode = new Node(val);
+        if (this.root === null) {
+            this.root = newNode;
+            return this;
         }
-        current = current.left;
-      } else {
-        if (current.right === null) {
-          current.right = newNode;
-          return this;
+        var current = this.root;
+        while (true) {
+            if (val === current.val) return undefined;
+            if (val < current.val) {
+                if (current.left === null) {
+                    current.left = newNode;
+                    return this;
+                }
+                current = current.left;
+            } else {
+                if (current.right === null) {
+                    current.right = newNode;
+                    return this;
+                }
+                current = current.right;
+            }
         }
-        current = current.right;
-      }
     }
-  }
 
-  find(n) {
-    if (this.root === null) return false;
-    let current = this.root;
-    let found = false;
-    while (current && !found) {
-      if (n < current.val) {
-        current = current.left;
-      } else if (n > current.val) {
-        current = current.right;
-      } else {
-        found = true;
-      }
+    find(n) {
+        if (this.root === null) return false;
+        let current = this.root;
+        let found = false;
+        while (current && !found) {
+            if (n < current.val) {
+                current = current.left;
+            } else if (n > current.val) {
+                current = current.right;
+            } else {
+                found = true;
+            }
+        }
+        if (!found) return undefined;
+        return current;
     }
-    if (!found) return undefined;
-    return current;
-  }
 
-  BFS() {
-    let data = [];
-    let queue = [];
-    let node = this.root;
-    queue.push(node);
-    while (queue.length) {
-      node = queue.shift();
-      data.push(node);
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
+    BFS() {
+        let data = [];
+        let queue = [];
+        let node = this.root;
+        queue.push(node);
+        while (queue.length) {
+            node = queue.shift();
+            data.push(node.val);
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
+        }
+        return data;
     }
-    return data;
-  }
+
+    DFSPreOrder() {
+        let data = [];
+        const traverse = (node) => {
+            data.push(node.val);
+            if (node.left) traverse(node.left);
+            if (node.right) traverse(node.right);
+        };
+        traverse(this.root);
+
+        return data;
+    }
 }
 
 let tree = new BinarySearchTree();
