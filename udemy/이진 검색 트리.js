@@ -164,6 +164,13 @@
 
 // ex) [5,1,3,6,4,2]
 
+// 중위 탐색 (InOrder)
+
+// 먼저 왼쪽 전체를 순회하고 노드를 방문하고
+// 그 다음에 오른쪽 전체를 순회한다.
+
+// ex) [5,1,2,3,4,6]
+
 //*************************************************************
 
 // 구현
@@ -256,6 +263,18 @@ class BinarySearchTree {
             if (node.left) traverse(node.left);
             if (node.right) traverse(node.right);
             data.push(node.val);
+        };
+        traverse(this.root);
+        return data;
+    }
+
+    DFSInOrder() {
+        let data = [];
+
+        const traverse = (node) => {
+            if (node.left) traverse(node.left);
+            data.push(node.val);
+            if (node.right) traverse(node.right);
         };
         traverse(this.root);
         return data;
