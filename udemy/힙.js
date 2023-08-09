@@ -196,3 +196,11 @@ ER.enqueue("five", 5);
 ER.enqueue("two", 2);
 
 console.log(ER);
+
+//*************************************************************
+
+// 이진 힙의 big O은 매우 빠른 수준
+
+// Insertion - O(logN)
+// Removal - O(logN)
+// Search - O(N)
