@@ -104,3 +104,95 @@ heap.insert(55);
 heap.insert(20);
 
 console.log(heap);
+
+//*************************************************************
+
+// 우선 순위 큐
+
+// 우선 순위 큐는 각 요소가 그에 해당하는 우선 순위를 가지는 데이터 구조
+// 그리고 더 높은 우선 순위를 가진 요소가 더 낮은 우선 순위를 가진 요소보다 먼저 처리 된다.
+
+// ex) 유닉스의 나이스
+
+class PriorityQueue {
+  constructor() {
+    this.values = [];
+  }
+
+  enqueue(val, priority) {
+    let newNode = new Node(val, priority);
+    this.values.push(newNode);
+    this.bubbleUp();
+  }
+
+  bubbleUp() {
+    let idx = this.values.length - 1;
+    const elemet = this.values[idx];
+    while (idx > 0) {
+      let parentIdx = Math.floor((idx - 1) / 2);
+      let parent = this.values[parentIdx];
+      if (elemet.priority >= parent.priority) break;
+      this.values[parentIdx] = elemet;
+      this.values[idx] = parent;
+      idx = parentIdx;
+    }
+  }
+
+  dequeue() {
+    const min = this.values[0];
+    const end = this.values.pop();
+    this.values[0] = end;
+    this.sinkDown();
+    return min;
+  }
+
+  sinkDown() {
+    let idx = 0;
+    const length = this.values.length;
+    const element = this.values[0];
+    while (true) {
+      let leftChildIdx = 2 * idx + 1;
+      let rightChildIdx = 2 * idx + 2;
+      let leftChild;
+      let rightChild;
+      let swap = null;
+
+      if (leftChildIdx < length) {
+        leftChild = this.values[leftChildIdx];
+        if (leftChild.priority < element.priority) {
+          swap = leftChildIdx;
+        }
+      }
+
+      if (rightChildIdx < length) {
+        rightChild = this.values[rightChildIdx];
+        if (
+          (swap === null && rightChild.priority < element.priority) ||
+          (swap != null && rightChild.priority < leftChild.priority)
+        ) {
+          swap = rightChildIdx;
+        }
+      }
+
+      if (swap === null) break;
+      this.values[idx] = this.values[swap];
+      this.values[swap] = element;
+      idx = swap;
+    }
+  }
+}
+
+class Node {
+  constructor(val, priority) {
+    this.val = val;
+    this.priority = priority;
+  }
+}
+
+let ER = new PriorityQueue();
+
+ER.enqueue("one", 1);
+ER.enqueue("five", 5);
+ER.enqueue("two", 2);
+
+console.log(ER);
