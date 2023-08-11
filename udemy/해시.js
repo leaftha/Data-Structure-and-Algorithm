@@ -140,3 +140,10 @@ ht.set('mediumvioletred', '#C71585');
 ht.set('plum', '#DDA0DD');
 
 console.log(ht);
+
+//*************************************************************
+
+// 해시 테이블의 big O
+// Insert: O(1)
+// Deletion: O(1)
+// Access: O(1)
