@@ -66,7 +66,7 @@ function hash(key, arrayLen) {
 // 해시 테이블 구현
 
 class HashTable {
-    constructor(size = 4) {
+    constructor(size = 53) {
         this.keyMap = new Array(size);
     }
 
@@ -80,21 +80,33 @@ class HashTable {
         }
         return total;
     }
-
     set(key, value) {
         let index = this._hash(key);
         if (!this.keyMap[index]) {
             this.keyMap[index] = [];
         }
         this.keyMap[index].push([key, value]);
-        return index;
+    }
+    get(key) {
+        let index = this._hash(key);
+        if (this.keyMap[index]) {
+            for (let i = 0; i < this.keyMap[index].length; i++) {
+                if (this.keyMap[index][i][0] === key) {
+                    return this.keyMap[index][i][1];
+                }
+            }
+        }
+        return undefined;
     }
 }
 
-let ht = new HashTable();
-ht.set('hello', 'goodbye');
-ht.set('hadsfo', 'cv');
-ht.set('dodg', 'z');
-ht.set('hea', 'gze');
+let ht = new HashTable(17);
+ht.set('maroon', '#800000');
+ht.set('yellow', '#FFFF00');
+ht.set('olive', '#808000');
+ht.set('salmon', '#FA8072');
+ht.set('lightcoral', '#F08080');
+ht.set('mediumvioletred', '#C71585');
+ht.set('plum', '#DDA0DD');
 
 console.log(ht);
