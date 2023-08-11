@@ -63,8 +63,10 @@ function hash(key, arrayLen) {
 
 //*************************************************************
 
+// 해시 테이블 구현
+
 class HashTable {
-    constructor(size = 53) {
+    constructor(size = 4) {
         this.keyMap = new Array(size);
     }
 
@@ -78,4 +80,21 @@ class HashTable {
         }
         return total;
     }
+
+    set(key, value) {
+        let index = this._hash(key);
+        if (!this.keyMap[index]) {
+            this.keyMap[index] = [];
+        }
+        this.keyMap[index].push([key, value]);
+        return index;
+    }
 }
+
+let ht = new HashTable();
+ht.set('hello', 'goodbye');
+ht.set('hadsfo', 'cv');
+ht.set('dodg', 'z');
+ht.set('hea', 'gze');
+
+console.log(ht);
