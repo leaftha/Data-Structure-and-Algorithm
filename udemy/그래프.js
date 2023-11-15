@@ -85,3 +85,54 @@
 // 리스트인 위의 반대이다.
 
 // sns나 위키의 정보는 퍼져있는 경우가 많다. 리스트가 효율이 좋다.
+
+//*************************************************************
+
+// 구현
+
+// 인접 리스트 사용
+
+class Graph {
+    constructor() {
+        this.adjacencyList = {};
+    }
+
+    addVertex(vertex) {
+        if (!this.adjacencyList[vertex]) {
+            this.adjacencyList[vertex] = [];
+        }
+    }
+
+    addEdge(v1, v2) {
+        this.adjacencyList[v1].push(v2);
+        this.adjacencyList[v2].push(v1);
+    }
+
+    removeEdge(v1, v2) {
+        this.adjacencyList[v1] = this.adjacencyList[v1].filter((v) => v !== v2);
+        this.adjacencyList[v2] = this.adjacencyList[v2].filter((v) => v !== v1);
+    }
+
+    removeVertex(vertex) {
+        while (this.adjacencyList[vertex].length) {
+            const adjacentVertex = this.adjacencyList[vertex].pop();
+            this.removeEdge(vertex, adjacentVertex);
+        }
+        delete this.adjacencyList[vertex];
+    }
+}
+
+const g = new Graph();
+
+g.addVertex('A');
+g.addVertex('B');
+g.addVertex('C');
+g.addVertex('D');
+g.addEdge('A', 'C');
+g.addEdge('B', 'C');
+g.addEdge('A', 'B');
+g.addEdge('D', 'B');
+g.addEdge('D', 'A');
+g.removeEdge('B', 'C');
+g.removeVertex('D');
+console.log(g);
