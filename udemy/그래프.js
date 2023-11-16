@@ -120,6 +120,24 @@ class Graph {
         }
         delete this.adjacencyList[vertex];
     }
+
+    depthFirstRecursive(start) {
+        const result = [];
+        const visited = {};
+        const adjacencyList = this.adjacencyList;
+
+        (function dfs(vertex) {
+            if (!vertex) return null;
+            visited[vertex] = true;
+            result.push(vertex);
+            adjacencyList[vertex].forEach((neighbor) => {
+                if (!visited[neighbor]) {
+                    return dfs(neighbor);
+                }
+            });
+        })(start);
+        return result;
+    }
 }
 
 const g = new Graph();
@@ -128,11 +146,22 @@ g.addVertex('A');
 g.addVertex('B');
 g.addVertex('C');
 g.addVertex('D');
-g.addEdge('A', 'C');
-g.addEdge('B', 'C');
+g.addVertex('E');
+g.addVertex('F');
+
 g.addEdge('A', 'B');
-g.addEdge('D', 'B');
-g.addEdge('D', 'A');
-g.removeEdge('B', 'C');
-g.removeVertex('D');
+g.addEdge('A', 'C');
+g.addEdge('B', 'D');
+g.addEdge('C', 'E');
+g.addEdge('D', 'E');
+g.addEdge('D', 'F');
+g.addEdge('E', 'F');
+
 console.log(g);
+
+g.depthFirstRecursive('A');
+
+// 재귀 방식으로 순회 방법
+// 빈 배열을 준비해서
+// 인접을 을 찾아가면서 순회
+// 방문한 노드를 기록해서 확인한다.
