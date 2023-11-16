@@ -159,6 +159,26 @@ class Graph {
     }
     return result;
   }
+
+  breadThFirst(start) {
+    const queue = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+
+    while (queue.length) {
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
 }
 
 const g = new Graph();
@@ -182,6 +202,7 @@ console.log(g);
 
 console.log(g.depthFirstRecursive("A"), "depthFirstRecursive");
 console.log(g.depthFirstIterative("A"), "depthFirstIterative");
+console.log(g.breadThFirst("A"), "breadThFirst");
 
 //*************************************************************
 
@@ -197,3 +218,5 @@ console.log(g.depthFirstIterative("A"), "depthFirstIterative");
 
 // 반복적 용법으로 순회 방법
 // 반복문 while을 사용한다.
+
+// 넓이 우선 탐색
