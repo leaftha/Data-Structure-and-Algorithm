@@ -138,6 +138,27 @@ class Graph {
         })(start);
         return result;
     }
+
+    depthFirstIterative(start) {
+        const stack = [start];
+        const result = [];
+        const visited = {};
+        visited[start] = true;
+        let currentVertex;
+
+        while (stack.length) {
+            currentVertex = stack.pop();
+            result.push(currentVertex);
+
+            this.adjacencyList[currentVertex].forEach((neighbor) => {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    stack.push(neighbor);
+                }
+            });
+        }
+        return result;
+    }
 }
 
 const g = new Graph();
@@ -159,9 +180,13 @@ g.addEdge('E', 'F');
 
 console.log(g);
 
-g.depthFirstRecursive('A');
+console.log(g.depthFirstRecursive('A'), 'depthFirstRecursive');
+console.log(g.depthFirstIterative('A'), 'depthFirstIterative');
 
 // 재귀 방식으로 순회 방법
 // 빈 배열을 준비해서
 // 인접을 을 찾아가면서 순회
 // 방문한 노드를 기록해서 확인한다.
+
+// 반복적 용법으로 순회 방법
+// 반복문 while을 사용한다.
