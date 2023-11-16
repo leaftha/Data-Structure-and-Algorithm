@@ -93,96 +93,103 @@
 // 인접 리스트 사용
 
 class Graph {
-    constructor() {
-        this.adjacencyList = {};
-    }
+  constructor() {
+    this.adjacencyList = {};
+  }
 
-    addVertex(vertex) {
-        if (!this.adjacencyList[vertex]) {
-            this.adjacencyList[vertex] = [];
+  addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) {
+      this.adjacencyList[vertex] = [];
+    }
+  }
+
+  addEdge(v1, v2) {
+    this.adjacencyList[v1].push(v2);
+    this.adjacencyList[v2].push(v1);
+  }
+
+  removeEdge(v1, v2) {
+    this.adjacencyList[v1] = this.adjacencyList[v1].filter((v) => v !== v2);
+    this.adjacencyList[v2] = this.adjacencyList[v2].filter((v) => v !== v1);
+  }
+
+  removeVertex(vertex) {
+    while (this.adjacencyList[vertex].length) {
+      const adjacentVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, adjacentVertex);
+    }
+    delete this.adjacencyList[vertex];
+  }
+
+  depthFirstRecursive(start) {
+    const result = [];
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+
+    (function dfs(vertex) {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+      adjacencyList[vertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          return dfs(neighbor);
         }
-    }
+      });
+    })(start);
+    return result;
+  }
 
-    addEdge(v1, v2) {
-        this.adjacencyList[v1].push(v2);
-        this.adjacencyList[v2].push(v1);
-    }
+  depthFirstIterative(start) {
+    const stack = [start];
+    const result = [];
+    const visited = {};
+    visited[start] = true;
+    let currentVertex;
 
-    removeEdge(v1, v2) {
-        this.adjacencyList[v1] = this.adjacencyList[v1].filter((v) => v !== v2);
-        this.adjacencyList[v2] = this.adjacencyList[v2].filter((v) => v !== v1);
-    }
+    while (stack.length) {
+      currentVertex = stack.pop();
+      result.push(currentVertex);
 
-    removeVertex(vertex) {
-        while (this.adjacencyList[vertex].length) {
-            const adjacentVertex = this.adjacencyList[vertex].pop();
-            this.removeEdge(vertex, adjacentVertex);
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          stack.push(neighbor);
         }
-        delete this.adjacencyList[vertex];
+      });
     }
-
-    depthFirstRecursive(start) {
-        const result = [];
-        const visited = {};
-        const adjacencyList = this.adjacencyList;
-
-        (function dfs(vertex) {
-            if (!vertex) return null;
-            visited[vertex] = true;
-            result.push(vertex);
-            adjacencyList[vertex].forEach((neighbor) => {
-                if (!visited[neighbor]) {
-                    return dfs(neighbor);
-                }
-            });
-        })(start);
-        return result;
-    }
-
-    depthFirstIterative(start) {
-        const stack = [start];
-        const result = [];
-        const visited = {};
-        visited[start] = true;
-        let currentVertex;
-
-        while (stack.length) {
-            currentVertex = stack.pop();
-            result.push(currentVertex);
-
-            this.adjacencyList[currentVertex].forEach((neighbor) => {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    stack.push(neighbor);
-                }
-            });
-        }
-        return result;
-    }
+    return result;
+  }
 }
 
 const g = new Graph();
 
-g.addVertex('A');
-g.addVertex('B');
-g.addVertex('C');
-g.addVertex('D');
-g.addVertex('E');
-g.addVertex('F');
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
 
-g.addEdge('A', 'B');
-g.addEdge('A', 'C');
-g.addEdge('B', 'D');
-g.addEdge('C', 'E');
-g.addEdge('D', 'E');
-g.addEdge('D', 'F');
-g.addEdge('E', 'F');
+g.addEdge("A", "B");
+g.addEdge("A", "C");
+g.addEdge("B", "D");
+g.addEdge("C", "E");
+g.addEdge("D", "E");
+g.addEdge("D", "F");
+g.addEdge("E", "F");
 
 console.log(g);
 
-console.log(g.depthFirstRecursive('A'), 'depthFirstRecursive');
-console.log(g.depthFirstIterative('A'), 'depthFirstIterative');
+console.log(g.depthFirstRecursive("A"), "depthFirstRecursive");
+console.log(g.depthFirstIterative("A"), "depthFirstIterative");
 
+//*************************************************************
+
+// 그래프 순회
+
+// 그래프의 순회는 시작점을 정해야 한다.
+
+// 깊이 우선 그래프(DFS)
 // 재귀 방식으로 순회 방법
 // 빈 배열을 준비해서
 // 인접을 을 찾아가면서 순회
