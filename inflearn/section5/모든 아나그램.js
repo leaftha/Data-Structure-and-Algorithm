@@ -2,7 +2,6 @@
 
 function SameObj(a, b) {
     let isFalse = true;
-    console.log(a, b);
     for (let i in b) {
         if (a[i] != b[i]) {
             isFalse = false;
