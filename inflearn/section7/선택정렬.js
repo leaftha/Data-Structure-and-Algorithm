@@ -22,7 +22,6 @@ function swap(a, b) {
     let idx = arr[a];
     arr[a] = arr[b];
     arr[b] = idx;
-    console.log('swap', arr[a], arr[b]);
 }
 
 // 풀이
