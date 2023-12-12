@@ -1,6 +1,5 @@
 function solution(c, arr) {
   let answer = Number.MIN_SAFE_INTEGER;
-  let check = Array(arr).fill(0);
 
   function dfs(L, sum) {
     if (L === arr.length) {
