@@ -1,63 +1,61 @@
-function solution(times) {
-    let answer = 0;
-    let timeline = [];
+// function solution(meeting){
+// 	let answer=Number.MIN_SAFE_INTEGER;
 
-    for (let i = 0; i < times.length; i++) {
-        timeline.push([times[i][0], 's']);
-        timeline.push([times[i][1], 'e']);
-    }
+// 	meeting.sort((a,b) => {
+// 		return a[0] -  b[0]
+// 	})
 
-    timeline.sort((a, b) => {
-        if (a[0] === b[0]) {
-            return a[1].charCodeAt() - b[1].charCodeAt();
-        } else {
-            return a[0] - b[0];
-        }
-    });
+// 	let sum = 0
+// 	let arr = []
 
-    let count = 0;
-    for (let i of timeline) {
-        if (i[1] === 's') {
-            count++;
-        } else {
-            count--;
-        }
+// 	for (let i of meeting) {
+// 		if (arr.length != 0) {
+// 			if (arr[arr.length-1] > i[0]) {
+// 				arr.push(i[1])
+// 			}
+// 			if(arr[0] <= i[0]) {
+// 				arr.shift()
+// 			}
+// 		}else {
+// 			arr.push(i[1])
+// 		}
 
-        if (count >= answer) {
-            answer = count;
-        }
-    }
+// 		answer = Math.max(answer, arr.length)
+// 		console.log(arr)
+// 	}
 
-    return answer;
-}
+// 	console.log(meeting)
+
+// 	return answer;
+// }
 
 // 풀이
 
 function solution(times) {
-    let answer = Number.MIN_SAFE_INTEGER;
-    let T_line = [];
-    for (let x of times) {
-        T_line.push([x[0], 's']);
-        T_line.push([x[1], 'e']);
-    }
-    T_line.sort((a, b) => {
-        if (a[0] === b[0]) return a[1].charCodeAt() - b[1].charCodeAt();
-        else return a[0] - b[0];
-    });
-    let cnt = 0;
-    for (let x of T_line) {
-        if (x[1] === 's') cnt++;
-        else cnt--;
-        answer = Math.max(answer, cnt);
-    }
-    return answer;
+  let answer = Number.MIN_SAFE_INTEGER;
+  let T_line = [];
+  for (let x of times) {
+    T_line.push([x[0], "s"]);
+    T_line.push([x[1], "e"]);
+  }
+  T_line.sort((a, b) => {
+    if (a[0] === b[0]) return a[1].charCodeAt() - b[1].charCodeAt();
+    else return a[0] - b[0];
+  });
+  let cnt = 0;
+  for (let x of T_line) {
+    if (x[1] === "s") cnt++;
+    else cnt--;
+    answer = Math.max(answer, cnt);
+  }
+  return answer;
 }
 
 let arr = [
-    [14, 18],
-    [12, 15],
-    [15, 20],
-    [20, 30],
-    [5, 14],
+  [14, 18],
+  [12, 15],
+  [15, 20],
+  [20, 30],
+  [5, 14],
 ];
 console.log(solution(arr));
