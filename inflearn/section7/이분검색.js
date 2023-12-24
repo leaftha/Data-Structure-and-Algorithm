@@ -1,21 +1,20 @@
 function solution(target, arr) {
   let answer;
+  arr.sort((a, b) => a - b);
+  let lt = 0;
+  let rt = arr.length - 1;
 
-  arr.sort((a, b) => {
-    return a - b;
-  });
-
-  let middle = Math.floor(arr.length / 2);
-  while (arr[middle] != target) {
-    if (arr[middle] < target) {
-      middle = middle / 2;
+  while (lt <= rt) {
+    let mid = Math.floor((lt + rt) / 2);
+    if (arr[mid] === target) {
+      answer = mid + 1;
+      break;
+    } else if (arr[mid] > target) {
+      rt = mid - 1;
     } else {
-      middle = (arr.length - middle) / 2;
+      lt = mid + 1;
     }
   }
-
-  answer = middle + 1;
-
   return answer;
 }
 
