@@ -9,10 +9,8 @@ function solution(arr) {
             let nx = arr[j][0];
             let ny = arr[j][1];
             sum += Math.abs(nx - x) + Math.abs(ny - y);
-            // answer.push(sum)
             answer[j] = Math.min(answer[j], sum);
         }
-        console.log('DASFASDF');
     }
 
     return answer;
