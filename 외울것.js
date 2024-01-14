@@ -128,3 +128,38 @@ function lcm(a, b) {
 }
 
 console.log(gcd(1000, 36));
+
+// ----------------------------------------------------------------------
+
+// 이차원 누적합
+
+function CumulativeSum(n, arr) {
+  let answer = 0;
+
+  let prefix = Array.from(Array(arr[0].length + 1), () =>
+    Array(arr[0].length + 1).fill(0)
+  );
+
+  for (let i = 0; i < arr[0].length; i++) {
+    for (let j = 0; j < arr[0].length; j++) {
+      prefix[j + 1][i + 1] =
+        prefix[j][i + 1] + prefix[j + 1][i] - prefix[j][i] + arr[j][i];
+    }
+  }
+
+  console.log(prefix);
+
+  return answer;
+}
+
+let graph = [
+  [1, 2, 3, 4],
+  [2, 3, 4, 5],
+  [3, 4, 5, 6],
+  [4, 5, 6, 7],
+  [2, 2, 3, 4],
+  [3, 4, 3, 4],
+  [1, 1, 4, 4],
+];
+
+console.log(solution(3, graph));
