@@ -8,6 +8,7 @@ function solution(n, m) {
         }
 
         for (let i = 1; i <= n; i++) {
+            if (arr.indexOf(i) != -1) continue;
             arr.push(i);
             recur(number + 1);
             arr.pop();
