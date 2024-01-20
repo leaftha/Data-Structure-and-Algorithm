@@ -163,3 +163,50 @@ let graph = [
 ];
 
 console.log(solution(3, graph));
+
+// ----------------------------------------------------------------------
+
+// LIS 가장 긴 증가하는 부분 순열
+
+function LIS(arr) {
+  let answer = 0;
+  let dp = Array(arr.length).fill(1);
+  for (let i = 1; i < arr.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (arr[i] > arr[j]) {
+        dp[i] = Math.max(dp[i], dp[j] + 1);
+      }
+    }
+  }
+
+  return answer;
+}
+
+let LISarr = [10, 20, 10, 30, 20, 50];
+
+console.log(LIS(LISarr));
+
+// LCS 가장 긴 증가하는 부분 순열
+
+function LCS(arr) {
+  let answer = 0;
+  let dp = Array.from(Array(arr[0].length + 1), () =>
+    Array(arr[1].length + 1).fill(0)
+  );
+  for (let i = 1; i < arr[1].length + 1; i++) {
+    for (let j = 1; j < arr[0].length + 1; j++) {
+      if (arr[1][i - 1] === arr[0][j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1] + 1;
+      } else {
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+      }
+    }
+  }
+
+  answer = dp[arr[1].length][arr[0].length];
+
+  return answer;
+}
+
+let LCSarr = ["ACAYKP", "CAPCAK"];
+console.log(LCS(LCSarr));
