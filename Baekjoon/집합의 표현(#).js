@@ -13,11 +13,13 @@ function solution(n, arr) {
         if (par[n] === n) {
             return n;
         } else {
+            par[n] = find(par[n]);
             return find(par[n]);
         }
     }
 
     for (let [x, a, b] of arr) {
+        console.log(par);
         if (x === 0) {
             union(a, b);
         } else {
