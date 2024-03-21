@@ -12,10 +12,13 @@
 // 2 이상의 n이 입력되었을 때, n번째 피보나치 수를 1234567으로 나눈 나머지를 리턴하는 함수, solution을 완성해 주세요.
 
 function solution(n) {
-  let fib = [0, 1];
-  for (let i = 2; i <= n; i++) {
-    fib[i] = (fib[i - 1] + fib[i - 2]) % 1234567;
-  }
+    var answer = 0;
+    let dp = Array(n + 1).fill(0);
+    dp[1] = 1;
+    for (let i = 2; i < dp.length; i++) {
+        dp[i] = (dp[i - 1] + dp[i - 2]) % 1234567;
+    }
 
-  return fib[n];
+    answer = dp[dp.length - 1];
+    return answer;
 }
