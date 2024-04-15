@@ -24,3 +24,25 @@ function solution(bridge_length, weight, truck_weights) {
 
     return sec + 1;
 }
+
+function solution(bridge_length, weight, truck_weights) {
+    var answer = 0;
+    let stack = [];
+    let w = 0;
+    while (truck_weights.length || stack.length) {
+        if (stack.length <= bridge_length && weight >= w + truck_weights[0]) {
+            let a = truck_weights.shift();
+            w += a;
+            stack.push([a, answer + bridge_length]);
+            answer++;
+        } else {
+            const [t, s] = stack.shift();
+            if (answer < s) {
+                answer = s;
+            }
+            w -= t;
+        }
+    }
+    answer += 1;
+    return answer;
+}
