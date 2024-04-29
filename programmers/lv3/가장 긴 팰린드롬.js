@@ -8,8 +8,7 @@ function solution(s) {
         const nextnext = s[i + 2];
 
         if (curr === next) {
-            const currPalinLen = getPalinLen(i, i + 1, s);
-            result = Math.max(result, currPalinLen);
+            const currPalinLen = getPalinLen(i, i + 1, s); 4            result = Math.max(result, currPalinLen);
         }
 
         if (curr === nextnext) {
