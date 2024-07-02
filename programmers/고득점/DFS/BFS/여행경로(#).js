@@ -1,35 +1,35 @@
 function solution(tickets) {
-    let answer = [];
-    const result = [];
-    const visited = [];
+  let answer = [];
+  const result = [];
+  const visited = [];
 
-    tickets.sort();
+  tickets.sort();
 
-    const len = tickets.length;
-    const dfs = (str, count) => {
-        result.push(str);
+  const len = tickets.length;
+  const dfs = (str, count) => {
+    result.push(str);
 
-        if (count === len) {
-            answer = result;
-            return true;
-        }
+    if (count === len) {
+      answer = result;
+      return true;
+    }
 
-        for (let i = 0; i < len; i++) {
-            if (!visited[i] && tickets[i][0] === str) {
-                visited[i] = true;
+    for (let i = 0; i < len; i++) {
+      if (!visited[i] && tickets[i][0] === str) {
+        visited[i] = true;
 
-                if (dfs(tickets[i][1], count + 1)) return true;
+        if (dfs(tickets[i][1], count + 1)) return true;
 
-                visited[i] = false;
-            }
-        }
+        visited[i] = false;
+      }
+    }
 
-        result.pop();
+    result.pop();
 
-        return false;
-    };
+    return false;
+  };
 
-    dfs('ICN', 0);
+  dfs("ICN", 0);
 
-    return answer;
+  return answer;
 }
