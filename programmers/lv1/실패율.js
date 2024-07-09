@@ -14,42 +14,67 @@
 // 실패율이 높은 스테이지부터 내림차순으로 스테이지의 번호가 담겨있는 배열을 return 하도록 solution 함수를 완성하라.
 
 function solution(N, stages) {
-    var answer = [];
-    let num = stages.length;
-    let obj = {};
-    for (let i = 1; i <= N; i++) {
-        let count = 0;
-        for (let j = 0; j < stages.length; j++) {
-            if (i === stages[j]) {
-                count++;
-            }
-        }
-        let n;
-        if (count === 0 && num === 0) {
-            n = 0;
-        } else {
-            n = count / num;
-        }
-        obj[i] = n;
-        num = num - count;
+  var answer = [];
+  let num = stages.length;
+  let obj = {};
+  for (let i = 1; i <= N; i++) {
+    let count = 0;
+    for (let j = 0; j < stages.length; j++) {
+      if (i === stages[j]) {
+        count++;
+      }
     }
-
-    let arr = [];
-
-    for (let objKey in obj) {
-        if (obj.hasOwnProperty(objKey)) {
-            arr.push(obj[objKey]);
-        }
+    let n;
+    if (count === 0 && num === 0) {
+      n = 0;
+    } else {
+      n = count / num;
     }
+    obj[i] = n;
+    num = num - count;
+  }
 
-    arr.sort((a, b) => {
-        return b - a;
-    });
-    for (let i = 0; i < arr.length; i++) {
-        let value = arr[i];
-        let val = Object.keys(obj).find((key) => obj[key] === value);
-        delete obj[val];
-        answer.push(val * 1);
+  let arr = [];
+
+  for (let objKey in obj) {
+    if (obj.hasOwnProperty(objKey)) {
+      arr.push(obj[objKey]);
     }
-    return answer;
+  }
+
+  arr.sort((a, b) => {
+    return b - a;
+  });
+  for (let i = 0; i < arr.length; i++) {
+    let value = arr[i];
+    let val = Object.keys(obj).find((key) => obj[key] === value);
+    delete obj[val];
+    answer.push(val * 1);
+  }
+  return answer;
+}
+
+// -----------------------------------------------------------------------------------------------
+
+function solution(N, stages) {
+  stages.sort((a, b) => a - b);
+  let arr = Array(N + 2).fill(0);
+  let length = stages.length;
+
+  for (let i of stages) {
+    arr[i] += 1;
+  }
+
+  for (let i = 1; i < arr.length - 1; i++) {
+    let val = arr[i] / length;
+    length -= arr[i];
+    arr[i] = val;
+  }
+
+  arr.pop();
+  arr.shift();
+
+  const result = Object.entries(arr).sort((a, b) => b[1] - a[1]);
+
+  return result.map((i) => Number(i[0]) + 1);
 }
