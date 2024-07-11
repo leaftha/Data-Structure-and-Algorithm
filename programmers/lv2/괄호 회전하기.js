@@ -11,42 +11,81 @@
 // s의 길이는 1 이상 1,000 이하입니다.
 
 function solution(s) {
-    var answer = 0;
-    let count = 0;
-    let str = s.split('');
-    while (count <= str.length - 1) {
-        let arr = [...str];
-        let splice = [];
-        for (let i = 0; i < count; i++) {
-            let a = arr.shift();
-            splice.push(a);
-        }
-        arr.push(...splice);
-        let stack = [];
-        for (let i of arr) {
-            stack.push(i);
-            if (i === ')') {
-                if (stack[stack.length - 2] === '(') {
-                    stack.pop();
-                    stack.pop();
-                }
-            } else if (i === ']') {
-                if (stack[stack.length - 2] === '[') {
-                    stack.pop();
-                    stack.pop();
-                } else {
-                }
-            } else if (i === '}') {
-                if (stack[stack.length - 2] === '{') {
-                    stack.pop();
-                    stack.pop();
-                }
-            }
-        }
-        if (stack.length === 0) {
-            answer++;
-        }
-        count++;
+  var answer = 0;
+  let count = 0;
+  let str = s.split("");
+  while (count <= str.length - 1) {
+    let arr = [...str];
+    let splice = [];
+    for (let i = 0; i < count; i++) {
+      let a = arr.shift();
+      splice.push(a);
     }
-    return answer;
+    arr.push(...splice);
+    let stack = [];
+    for (let i of arr) {
+      stack.push(i);
+      if (i === ")") {
+        if (stack[stack.length - 2] === "(") {
+          stack.pop();
+          stack.pop();
+        }
+      } else if (i === "]") {
+        if (stack[stack.length - 2] === "[") {
+          stack.pop();
+          stack.pop();
+        } else {
+        }
+      } else if (i === "}") {
+        if (stack[stack.length - 2] === "{") {
+          stack.pop();
+          stack.pop();
+        }
+      }
+    }
+    if (stack.length === 0) {
+      answer++;
+    }
+    count++;
+  }
+  return answer;
+}
+
+// --------------------------------------------------------------------------------
+
+function solution(s) {
+  var answer = 0;
+  for (let i = 0; i < s.length; i++) {
+    const stack = [];
+    let isFalse = true;
+    for (let j = 0; j < s.length; j++) {
+      const c = s[(i + j) % s.length];
+
+      if (c === "[" || c === "(" || c === "{") {
+        stack.push(c);
+      } else {
+        if (stack.length === 0) {
+          isFalse = false;
+          break;
+        }
+
+        const top = stack.at(-1);
+        if (c === "]" && top === "[") {
+          stack.pop();
+        } else if (c === ")" && top === "(") {
+          stack.pop();
+        } else if (c === "}" && top === "{") {
+          stack.pop();
+        } else {
+          isFalse = false;
+          break;
+        }
+      }
+    }
+
+    if (isFalse && stack.length === 0) {
+      answer++;
+    }
+  }
+  return answer;
 }
