@@ -15,20 +15,45 @@
 // 개발 속도가 하루에 4%라면 배포는 2일 뒤에 이루어집니다.
 
 function solution(progresses, speeds) {
-    var answer = [];
-    let arr = [];
-    let n = 0;
-    let max = Math.ceil((100 - progresses[0]) / speeds[0]);
-    for (let i = 0; i < progresses.length; i++) {
-        arr.push(progresses[i]);
-        n = Math.ceil((100 - progresses[i]) / speeds[i]);
-        if (max < n) {
-            answer.push(arr.length - 1);
-            arr = [];
-            arr.push(progresses[i]);
-            max = n;
-        }
+  var answer = [];
+  let arr = [];
+  let n = 0;
+  let max = Math.ceil((100 - progresses[0]) / speeds[0]);
+  for (let i = 0; i < progresses.length; i++) {
+    arr.push(progresses[i]);
+    n = Math.ceil((100 - progresses[i]) / speeds[i]);
+    if (max < n) {
+      answer.push(arr.length - 1);
+      arr = [];
+      arr.push(progresses[i]);
+      max = n;
     }
-    answer.push(arr.length);
-    return answer;
+  }
+  answer.push(arr.length);
+  return answer;
+}
+
+// ---------------------------------------------------------------------------
+
+function solution(progresses, speeds) {
+  var answer = [];
+
+  const dayList = progresses.map((pro, i) =>
+    Math.ceil((100 - pro) / speeds[i])
+  );
+
+  let count = 0;
+  let maxDay = dayList[0];
+
+  for (let i = 0; i < progresses.length; i++) {
+    if (dayList[i] <= maxDay) {
+      count++;
+    } else {
+      answer.push(count);
+      count = 1;
+      maxDay = dayList[i];
+    }
+  }
+  answer.push(count);
+  return answer;
 }
