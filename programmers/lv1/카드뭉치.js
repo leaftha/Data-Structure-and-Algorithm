@@ -32,3 +32,23 @@ function solution(cards1, cards2, goal) {
   }
   return answer;
 }
+
+// -----------------------------------------------------------------
+
+function solution(cards1, cards2, goal) {
+  var answer = "Yes";
+  const n = goal.length;
+  for (let i = 0; i < n; i++) {
+    const a = goal.shift();
+    console.log(cards1, cards2, goal, a);
+    if (cards1[0] === a) {
+      cards1.shift();
+    } else if (cards2[0] === a) {
+      cards2.shift();
+    } else {
+      answer = "No";
+      break;
+    }
+  }
+  return answer;
+}
