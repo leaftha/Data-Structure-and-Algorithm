@@ -20,38 +20,81 @@
 // 1 ≤ want의 원소의 길이, discount의 원소의 길이 ≤ 12
 
 function solution(want, number, discount) {
-    var answer = 0;
-    let list = {};
+  var answer = 0;
+  let list = {};
 
-    for (let i = 0; i < want.length; i++) {
-        list[want[i]] = number[i];
+  for (let i = 0; i < want.length; i++) {
+    list[want[i]] = number[i];
+  }
+  let frist = 0;
+  let last = 10;
+  while (last <= discount.length) {
+    let check_list = {};
+    for (let i = frist; i < last; i++) {
+      if (check_list[discount[i]]) {
+        check_list[discount[i]] += 1;
+      } else {
+        check_list[discount[i]] = 1;
+      }
     }
-    let frist = 0;
-    let last = 10;
-    while (last <= discount.length) {
-        let check_list = {};
-        for (let i = frist; i < last; i++) {
-            if (check_list[discount[i]]) {
-                check_list[discount[i]] += 1;
-            } else {
-                check_list[discount[i]] = 1;
-            }
-        }
-        let isFalse = true;
+    let isFalse = true;
 
-        for (let i in list) {
-            if (list[i] != check_list[i]) {
-                isFalse = false;
-                break;
-            }
-        }
-        frist++;
-        last++;
-
-        if (isFalse) {
-            answer += 1;
-        }
+    for (let i in list) {
+      if (list[i] != check_list[i]) {
+        isFalse = false;
+        break;
+      }
     }
+    frist++;
+    last++;
 
-    return answer;
+    if (isFalse) {
+      answer += 1;
+    }
+  }
+
+  return answer;
+}
+
+// -----------------------------------------------------------------------------
+
+function isShallowEqual(obj1, obj2) {
+  const key1 = Object.keys(obj1);
+  const key2 = Object.keys(obj2);
+
+  if (key1.length != key2.length) return false;
+
+  for (const key of key1) {
+    const val1 = obj1[key];
+    const val2 = obj2[key];
+
+    if (val1 !== val2) return false;
+  }
+
+  return true;
+}
+
+function solution(want, number, discount) {
+  var answer = 0;
+
+  const obj = {};
+
+  for (let i = 0; i < want.length; i++) {
+    obj[want[i]] = number[i];
+  }
+
+  for (let i = 0; i < discount.length; i++) {
+    const disobj = {};
+
+    for (let j = i; j < i + 10; j++) {
+      if (obj[discount[j]]) {
+        disobj[discount[j]] = (disobj[discount[j]] || 0) + 1;
+      }
+    }
+    if (isShallowEqual(disobj, obj)) {
+      answer += 1;
+    }
+  }
+
+  return answer;
 }
