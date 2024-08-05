@@ -44,3 +44,28 @@ function solution(k, dungeons) {
 
   return answer;
 }
+
+// ----------------------------------------------------------
+
+function dfs(curk, cnt, dungeons, visted) {
+  let answerMax = cnt;
+
+  for (let i = 0; i < dungeons.length; i++) {
+    if (curk >= dungeons[i][0] && visted[i] === 0) {
+      visted[i] = 1;
+
+      answerMax = Math.max(
+        answerMax,
+        dfs(curk - dungeons[i][1], cnt + 1, dungeons, visted)
+      );
+      visted[i] = 0;
+    }
+  }
+  return answerMax;
+}
+
+function solution(k, dungeons) {
+  const visted = Array(dungeons.length).fill(0);
+  const answer = dfs(k, 0, dungeons, visted);
+  return answer;
+}
