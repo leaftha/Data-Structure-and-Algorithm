@@ -18,3 +18,16 @@ function solution(numbers) {
 
   return answer[0] === "0" ? "0" : answer;
 }
+
+// -----------------------------------------------------------
+function compare(a, b) {
+  const t1 = a.toString() + b.toString();
+  const t2 = b.toString() + a.toString();
+  return t1 > t2 ? -1 : 1;
+}
+
+function solution(numbers) {
+  const sortedN = numbers.sort(compare);
+  const answer = sortedN.join("");
+  return Number(answer) === 0 ? "0" : answer;
+}
