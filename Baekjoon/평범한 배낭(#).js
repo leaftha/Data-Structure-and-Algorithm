@@ -1,31 +1,18 @@
-function solution(n, arr) {
-    let answer = 0;
+const input = require("fs")
+  .readFileSync(process.platform === "linux" ? "/dev/stdin" : "./input.txt")
+  .toString()
+  .split("\n");
 
-    function recur(idx, w, f) {
-        if (w > n) {
-            return;
-        }
+const [N, K] = input[0].trim().split(" ").map(Number);
+const dp = Array(K + 1).fill(0);
 
-        if (idx === arr.length) {
-            answer = Math.max(answer, f);
-            return;
-        }
-
-        recur(idx + 1, w + arr[idx][0], f + arr[idx][1]);
-
-        recur(idx + 1, w, f);
+for (let i = 1; i <= N; i++) {
+  const [W, V] = input[i].trim().split(" ").map(Number);
+  for (let j = K; j >= W; j--) {
+    if (dp[j - W] + V > dp[j]) {
+      dp[j] = dp[j - W] + V;
     }
-
-    recur(0, 0, 0);
-
-    return answer;
+  }
 }
 
-let arr = [
-    [6, 13],
-    [4, 8],
-    [3, 6],
-    [5, 12],
-];
-
-console.log(solution(7, arr));
+console.log(dp[K]);
