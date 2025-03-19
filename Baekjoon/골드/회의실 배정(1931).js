@@ -7,21 +7,22 @@ const input = require("fs")
 
 let [n] = input.shift();
 
-let arr = input.shift();
-arr.sort((a, b) => {
-  return a - b;
+input.sort((a, b) => {
+  if (a[1] === b[1]) {
+    return a[0] - b[0];
+  } else {
+    return a[1] - b[1];
+  }
 });
 
-let dp = Array(n).fill(0);
-dp[0] = arr[0];
+let last = input[0][1];
 
-for (let i = 1; i < n; i++) {
-  dp[i] = dp[i - 1] + arr[i];
-}
-
-let answer = 0;
-for (let num of dp) {
-  answer += num;
+let answer = 1;
+for (let i = 1; i < input.length; i++) {
+  if (input[i][0] >= last) {
+    answer++;
+    last = input[i][1];
+  }
 }
 
 console.log(answer);
