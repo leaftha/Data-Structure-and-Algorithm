@@ -15,7 +15,6 @@ for (let [i] of input) {
 arr.unshift(0);
 let result = [];
 const dfs = (start, cur, path, vistied) => {
-  console.log(cur, path);
   if (vistied[cur]) {
     if (start === cur) {
       result.push(...path);
