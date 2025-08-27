@@ -57,6 +57,4 @@ for (const [c, a, b] of edges) {
   }
 }
 
-console.log(parent);
-console.log(rank);
 console.log(sum - maxEdge);
