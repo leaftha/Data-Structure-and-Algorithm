@@ -26,6 +26,8 @@ for (let i = 0; i < N; i++) {
 
     const right = j < M - 1 ? input[i][j + 1] : 0;
     answer += Math.max(h - right, 0);
+
+    console.log(answer, h);
   }
 }
 
